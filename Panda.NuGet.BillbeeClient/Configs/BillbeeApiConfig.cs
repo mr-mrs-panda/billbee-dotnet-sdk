@@ -26,5 +26,10 @@ namespace Panda.NuGet.BillbeeClient.Configs
         /// The base url of the Billbee API. Typically, this sticks unchanged.
         /// </summary>
         public string? BaseUrl { get; set; } = "https://app.billbee.io/api/v1";
+
+        /// <summary>
+        /// The timout in seconds for the API calls. If not set, the default timeout of the HttpClient is used.
+        /// </summary>
+        public int? Timeout { get; set; }
     }
 }
