@@ -37,6 +37,10 @@ internal class BillbeeRestClient : IBillbeeRestClient
     {
         _config = billbeeApiConfig;
         _httpClient = httpClient;
+        if (billbeeApiConfig.Timeout.HasValue)
+        {
+            _httpClient.Timeout = TimeSpan.FromSeconds(billbeeApiConfig.Timeout.Value);
+        }
         _rateLimiter = rateLimiter;
     }
 
