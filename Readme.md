@@ -26,10 +26,18 @@ This project implements request rate limiting through a singleton RateLimiter. T
 
 ## Installation
 
-The Panda.NuGet.BillbeeClient library is available as a NuGet package. You can install it via the NuGet package manager from the GitHub repository [pandapknaepel/billbee-csharp-sdk](https://github.com/pandapknaepel/billbee-csharp-sdk).
+The Panda.NuGet.BillbeeClient library is available as a NuGet package. You can install it via the NuGet package manager from the GitLab repository [pandapknaepel/billbee-csharp-sdk](https://gitlab.com/pknaepel_panda/billbee-csharp-sdk/).
+
+### 1. Add a source with the .NET CLI
+
+~~~bash
+dotnet nuget add source "https://gitlab.com/api/v4/projects/52452560/packages/nuget/index.json" --name "GitLab Panda.NuGet.BillbeeClient"
+~~~
+
+### 2. Install a package with the .NET CLI
 
 ```bash
-dotnet add package Panda.NuGet.BillbeeClient --version <version>
+dotnet add package Panda.NuGet.BillbeeClient --source "GitLab Panda.NuGet.BillbeeClient" --version <version>
 ```
 
 Replace `<version>` with the latest version number.
