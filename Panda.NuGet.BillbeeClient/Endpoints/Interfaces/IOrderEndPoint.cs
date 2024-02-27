@@ -200,5 +200,13 @@ namespace Panda.NuGet.BillbeeClient.Endpoints.Interfaces
         /// <param name="parsePlaceholdersQuery">The text to be parsed</param>
         /// <returns>The parsed text</returns>
         Task<ParsePlaceholdersResult> ParsePlaceholdersAsync(long orderId, ParsePlaceholdersQuery parsePlaceholdersQuery);
+
+        /// <summary>
+        /// Adds a message to the order
+        /// </summary>
+        /// <param name="orderId">The ID of the order</param>
+        /// <param name="orderMessage">The message to add</param>
+        /// <returns>A task representing the asynchronous operation</returns>
+        Task AddMessageAsync(long orderId, OrderMessage orderMessage);
     }
 }
