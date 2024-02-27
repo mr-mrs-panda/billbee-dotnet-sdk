@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F715627E-A8F9-4048-A7FE-FF3E0B23BCCC}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
+		.gitlab-ci.yml = .gitlab-ci.yml
 	EndProjectSection
 EndProject
 Global
