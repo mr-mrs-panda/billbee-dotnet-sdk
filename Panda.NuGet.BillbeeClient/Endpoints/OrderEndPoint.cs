@@ -280,5 +280,10 @@ namespace Panda.NuGet.BillbeeClient.Endpoints
         {
             return await _restClient.PostAsync<ParsePlaceholdersResult, ParsePlaceholdersQuery>($"/orders/{orderId}/parse-placeholders", parsePlaceholdersQuery);
         }
+
+        public async Task AddMessageAsync(long orderId, OrderMessage orderMessage)
+        {
+            await _restClient.PostAsync($"/orders/{orderId}/message", orderMessage);
+        }
     }
 }
