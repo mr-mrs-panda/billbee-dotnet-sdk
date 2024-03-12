@@ -113,7 +113,7 @@ namespace Panda.NuGet.BillbeeClient.Endpoints.Interfaces
         /// <param name="order">An order object, to create in billbee</param>
         /// <param name="shopId">The id of the shop. Necessary, to attach an order directly to a shop connection</param>
         /// <returns></returns>
-        Task<ApiResult<OrderResult>> PostNewOrderAsync(Order order, long shopId);
+        Task<ApiResult<Order>> PostNewOrderAsync(Order order, long shopId);
 
         /// <summary>
         /// Creates a new order
