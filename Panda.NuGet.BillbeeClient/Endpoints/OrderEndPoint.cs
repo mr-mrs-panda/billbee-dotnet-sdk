@@ -194,9 +194,9 @@ namespace Panda.NuGet.BillbeeClient.Endpoints
             return await _restClient.GetAsync<ApiResult<List<InvoiceDetail>>>("/orders/invoices", parameters);
         }
 
-        public async Task<ApiResult<OrderResult>> PostNewOrderAsync(Order order, long shopId)
+        public async Task<ApiResult<Order>> PostNewOrderAsync(Order order, long shopId)
         {
-            return await _restClient.PostAsync<ApiResult<OrderResult>, Order>($"/orders?shopId={shopId}", order);
+            return await _restClient.PostAsync<ApiResult<Order>, Order>($"/orders?shopId={shopId}", order);
         }
         
         public async Task<ApiResult<Order>> PostNewOrderAsync(Order order)
