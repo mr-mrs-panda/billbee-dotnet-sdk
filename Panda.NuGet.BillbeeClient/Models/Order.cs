@@ -1,4 +1,5 @@
-﻿using Panda.NuGet.BillbeeClient.Enums;
+﻿using System.Text.Json.Serialization;
+using Panda.NuGet.BillbeeClient.Enums;
 
 namespace Panda.NuGet.BillbeeClient.Models
 {
@@ -7,7 +8,18 @@ namespace Panda.NuGet.BillbeeClient.Models
         /// <summary>
         /// List of ids, that reference to the shippings, that have been made for this order.
         /// </summary>
-        public List<OrderShippingId>? ShippingIds { get; set; }
+        [Obsolete("Use Shipments instead. This property will be removed in the future.")]
+        public List<Shipment>? ShippingIds { get; set; }
+
+        /// <summary>
+        /// List of shipments, that have been made for this order.
+        /// </summary>
+        [JsonIgnore]
+        public List<Shipment>? Shipments
+        {
+            get => ShippingIds;
+            set => ShippingIds = value;
+        }
 
         /// <summary>
         /// Kunde hat Verlust des Widerrufrechts akzeptiert OR Customer accepts loss due to withdrawal
@@ -211,25 +223,25 @@ namespace Panda.NuGet.BillbeeClient.Models
         /// The customer number (not to be confused with the id of the customer)
         /// </summary>
         public string? CustomerNumber { get; set; }
-        
+
         /// <summary>
         /// The Customer object connected with the order
         /// </summary>
         public Customer? Customer { get; set; }
-        
+
         /// <summary>
         /// List of payments, associated with this order
         /// </summary>
         public List<OrderPayment>? Payments { get; set; }
-        
+
         public decimal AdjustmentCost { get; set; }
         public string? AdjustmentReason { get; set; }
-        
+
         /// <summary>
         /// If set, the order was already archived at the given date. Further modification is disabled.
         /// </summary>
         public DateTime? ArchivedAt { get; set; }
-        
+
         /// <summary>
         /// The vat-id, that was given by the customer to fulfill this order
         /// </summary>
@@ -237,30 +249,30 @@ namespace Panda.NuGet.BillbeeClient.Models
 
         /// <summary>An optional code for the distribution center delivering this order</summary>
         public string? DistributionCenter { get; set; }
-        
+
         /// <summary>
         /// Date of the last update, the order got
         /// </summary>
         public DateTime? LastModifiedAt { get; set; }
-        
+
         /// <summary>
         /// The vat-id, that should be displayed on the invoice and other order documents
         /// </summary>
         public string? MerchantVatId { get; set; }
-        
+
         /// <summary>
         /// List of history events of this order
         /// </summary>
         public List<HistoryEntry>? History { get; set; }
-        
+
         public decimal RebateDifference { get; set; }
-        
+
         /// <summary>
         /// If set, the order was restored from the archive at the given date.
         /// </summary>
         public DateTime? RestoredAt { get; set; }
     }
-    
+
     public class HistoryEntry
     {
         public DateTime Created { get; set; }
