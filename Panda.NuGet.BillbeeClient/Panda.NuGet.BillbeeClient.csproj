@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net7.0;net8.0;net9.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RepositoryUrl>https://gitlab.com/pknaepel_panda/billbee-csharp-sdk</RepositoryUrl>
@@ -10,6 +10,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Http" Version="7.*" Condition="'$(TargetFramework)' == 'net7.0'" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="8.*" Condition="'$(TargetFramework)' == 'net8.0'" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="9.*" Condition="'$(TargetFramework)' == 'net9.0'" />
     </ItemGroup>
 
 </Project>
