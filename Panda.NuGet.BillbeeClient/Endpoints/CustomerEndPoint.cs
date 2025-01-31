@@ -81,6 +81,7 @@ namespace Panda.NuGet.BillbeeClient.Endpoints
             return await _restClient.PutAsync<ApiResult<CustomerAddress>, CustomerAddress>($"/customers/addresses/{customerAddress.Id}", customerAddress);
         }
         
+        [Obsolete("Please us CustomerAddressesEndPoint.UpdateCustomerAddressAsync instead. The PATCH endpoint is not recommended since of frequent timeouts.")]
         public async Task<ApiResult<CustomerAddress>> PatchCustomerAddressAsync(long customerAddressId, Dictionary<string, string> fieldsToPatch)
         {
             return await _restClient.PatchAsync<ApiResult<CustomerAddress>, Dictionary<string, string>>($"/customers/addresses/{customerAddressId}", fieldsToPatch);
