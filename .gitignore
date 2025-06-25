@@ -5,3 +5,5 @@ riderModule.iml
 /_ReSharper.Caches/
 deploy.sh
 .idea/
+.claude/settings.local.json
+CLAUDE.md

@@ -4,13 +4,44 @@
         <TargetFrameworks>net7.0;net8.0;net9.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RepositoryUrl>https://gitlab.com/pknaepel_panda/billbee-csharp-sdk</RepositoryUrl>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>Panda.NuGet.BillbeeClient</PackageId>
+        <Title>Billbee API Client for .NET</Title>
+        <Description>A modern .NET library for seamless integration with the Billbee API, using System.Net.Http and System.Text.Json for efficient, dependency-light communication. Provides endpoints for orders, products, customers, shipments, and more.</Description>
+        <Summary>Modern .NET client for Billbee API with built-in rate limiting and comprehensive endpoint coverage.</Summary>
+        <Authors>Mr. &amp; Mrs. Panda</Authors>
+        <Company>Mr. &amp; Mrs. Panda</Company>
+        <Product>Panda.NuGet.BillbeeClient</Product>
+        <Copyright>Copyright © Mr. &amp; Mrs. Panda 2025</Copyright>
+        <PackageProjectUrl>https://github.com/mr-mrs-panda/billbee-dotnet-sdk</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/mr-mrs-panda/billbee-dotnet-sdk</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReadmeFile>Readme.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageTags>Billbee;API;integration;orders;products;shipments;customers;dotnet;http;json;ecommerce;fulfillment</PackageTags>
+        <PackageReleaseNotes>Initial release of the modern Billbee API client with .NET 7/8/9 support.</PackageReleaseNotes>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <AssemblyTitle>Panda.NuGet.BillbeeClient</AssemblyTitle>
+        <AssemblyDescription>A modern .NET library for seamless integration with the Billbee API</AssemblyDescription>
+        <AssemblyConfiguration>Release</AssemblyConfiguration>
+        <AssemblyCompany>Mr. &amp; Mrs. Panda</AssemblyCompany>
+        <AssemblyProduct>Panda.NuGet.BillbeeClient</AssemblyProduct>
+        <AssemblyCopyright>Copyright © Mr. &amp; Mrs. Panda 2025</AssemblyCopyright>
+        <AssemblyTrademark></AssemblyTrademark>
+        <AssemblyCulture></AssemblyCulture>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Http" Version="7.*" Condition="'$(TargetFramework)' == 'net7.0'" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="8.*" Condition="'$(TargetFramework)' == 'net8.0'" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="9.*" Condition="'$(TargetFramework)' == 'net9.0'" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../Readme.md" Pack="true" PackagePath="/" />
+        <None Include="../LICENSE" Pack="true" PackagePath="/" />
     </ItemGroup>
 
 </Project>

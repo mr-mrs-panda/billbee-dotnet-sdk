@@ -1,50 +1,47 @@
 # Panda.NuGet.BillbeeClient
 
-Panda.NuGet.BillbeeClient is a .NET Core library designed to provide an easy-to-use interface for communicating with the Billbee API. This project is a fork of the [billbeeio/billbee-csharp-sdk](https://github.com/billbeeio/billbee-csharp-sdk) repository.
+A modern .NET library for seamless integration with the Billbee API, using `System.Net.Http` and `System.Text.Json` for efficient, dependency-light communication.
 
-## Goals
+## About
 
-The primary goal of this library is to provide a modern, efficient, and streamlined way to interact with the Billbee API. Specifically, it employs `System.Net.Http` for making HTTP requests and `System.Text.Json` for JSON serialization and deserialization. These choices move away from the RestSharp and Newtonsoft.Json libraries used in the original repository.
+This project was originally forked from [billbeeio/billbee-csharp-sdk](https://github.com/billbeeio/billbee-csharp-sdk) but now maintains its own independent git history. The library has been completely rewritten to leverage modern .NET libraries and practices.
 
-### Advantages
+## Features
 
-1. **Consistency**: Utilizing native .NET Core libraries like `System.Net.Http` and `System.Text.Json` brings a level of consistency and integration that external libraries may not offer.
+- **Modern .NET Support**: Targets .NET 7.0, 8.0, and 9.0
+- **Performance Optimized**: Uses `System.Net.Http` and `System.Text.Json` for maximum efficiency
+- **Dependency Light**: Minimal external dependencies for easier maintenance
+- **Built-in Rate Limiting**: Prevents API rate limit violations
+- **Comprehensive API Coverage**: Supports all major Billbee API endpoints
 
-2. **Performance**: Both `System.Net.Http` and `System.Text.Json` are optimized for performance, which can be crucial for high-throughput applications.
+### Supported Endpoints
 
-3. **Ease of Maintenance**: Using built-in libraries means fewer external dependencies, making it easier to maintain and update the project.
-
-4. **Forward Compatibility**: Leveraging core libraries ensures better forward compatibility with future .NET Core updates.
-
-5. **Breaking Changes**: Moving away from RestSharp eliminates the risk posed by breaking changes in external libraries, providing a more stable foundation for the project.
-
-By aligning with the .NET Core ecosystem, this library aims for robustness, efficiency, and ease of use.
-
-## Rate Limiting
-
-This project implements request rate limiting through a singleton RateLimiter. This ensures that API calls do not exceed the set rate limits. Note, however, that this implementation will only function reliably if multiple instances of the application are not running concurrently.
+- Orders and order management
+- Products and inventory
+- Customers and addresses
+- Shipments and tracking
+- Webhooks and events
+- Cloud storage integration
+- Automatic provisioning
+- Search functionality
 
 ## Installation
 
-The Panda.NuGet.BillbeeClient library is available as a NuGet package. You can install it via the NuGet package manager from the GitLab repository [pandapknaepel/billbee-csharp-sdk](https://gitlab.com/pknaepel_panda/billbee-csharp-sdk/).
-
-### 1. Add a source with the .NET CLI
-
-~~~bash
-dotnet nuget add source "https://gitlab.com/api/v4/projects/52452560/packages/nuget/index.json" --name "GitLab Panda.NuGet.BillbeeClient"
-~~~
-
-### 2. Install a package with the .NET CLI
+The package is available on [NuGet.org](https://www.nuget.org/packages/Panda.NuGet.BillbeeClient/):
 
 ```bash
-dotnet add package Panda.NuGet.BillbeeClient --source "GitLab Panda.NuGet.BillbeeClient" --version <version>
+dotnet add package Panda.NuGet.BillbeeClient
 ```
 
-Replace `<version>` with the latest version number.
+Or via Package Manager Console:
 
-## Usage
+```powershell
+Install-Package Panda.NuGet.BillbeeClient
+```
 
-To use the Panda.NuGet.BillbeeClient in your project, first, you need to configure the services in the `Startup.cs` file of your project.
+## Quick Start
+
+### 1. Configure Services
 
 ```csharp
 using Panda.NuGet.BillbeeClient.Extensions;
@@ -56,7 +53,7 @@ public class Startup
         services.AddBillbeeApi(new BillbeeApiConfig
         {
             Username = "your-username",
-            Password = "your-password",
+            Password = "your-password", 
             ApiKey = "your-api-key",
             BaseUrl = "https://api.billbee.io"
         });
@@ -64,38 +61,64 @@ public class Startup
 }
 ```
 
-You can now inject the `IBillbeeClient` interface wherever you need to use the Billbee API.
+### 2. Use in Your Services
 
 ```csharp
-public class MyService
+public class OrderService
 {
     private readonly IBillbeeClient _billbeeClient;
 
-    public MyService(IBillbeeClient billbeeClient)
+    public OrderService(IBillbeeClient billbeeClient)
     {
         _billbeeClient = billbeeClient;
     }
 
-    public async Task DoSomethingAsync()
+    public async Task<IEnumerable<Order>> GetRecentOrdersAsync()
     {
-        var events = await _billbeeClient.Events.GetEventsAsync();
-        // ...
+        var result = await _billbeeClient.Orders.GetOrdersAsync();
+        return result.Data;
+    }
+
+    public async Task<Product> GetProductAsync(int productId)
+    {
+        var result = await _billbeeClient.Products.GetProductAsync(productId);
+        return result.Data;
     }
 }
 ```
 
-## Features
+## Configuration
 
-Panda.NuGet.BillbeeClient supports various endpoints allowing access to different sections of the Billbee API, such as events, shipments, webhooks, products, automatic user creation, customer base data, customer addresses, orders, cloud storages, and enum values.
+The `BillbeeApiConfig` supports the following properties:
+
+- `Username`: Your Billbee username
+- `Password`: Your Billbee password or API password
+- `ApiKey`: Your Billbee API key
+- `BaseUrl`: The Billbee API base URL (default: https://api.billbee.io)
+
+## Rate Limiting
+
+The client includes built-in rate limiting to prevent API quota violations. The rate limiter is implemented as a singleton and will work correctly within a single application instance.
 
 ## Documentation
 
-For more details on the Billbee API and what you can do with it, please refer to the [official Billbee API documentation](https://app.billbee.io/swagger/ui/index) or [Billbee's website](https://www.billbee.de/api/).
+For detailed API documentation, refer to:
+- [Official Billbee API Documentation](https://app.billbee.io/swagger/ui/index)
+- [Billbee Website](https://www.billbee.de/api/)
+
+## Requirements
+
+- .NET 7.0, 8.0, or 9.0
+- Valid Billbee API credentials
 
 ## Contributing
 
-If you find any issues or have suggestions for improvements, feel free to open an issue or create a pull request. Your contributions are welcome!
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
 
 ## License
 
-This project inherits the license from the original [billbeeio/billbee-csharp-sdk](https://github.com/billbeeio/billbee-csharp-sdk) repository.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+Originally forked from [billbeeio/billbee-csharp-sdk](https://github.com/billbeeio/billbee-csharp-sdk) - thanks to the original contributors for the foundation.
