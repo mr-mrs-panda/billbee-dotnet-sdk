@@ -8,7 +8,7 @@ This project was originally forked from [billbeeio/billbee-csharp-sdk](https://g
 
 ## Features
 
-- **Modern .NET Support**: Targets .NET 7.0, 8.0, and 9.0
+- **Modern .NET Support**: Targets .NET 8.0, 9.0 and 10.0
 - **Performance Optimized**: Uses `System.Net.Http` and `System.Text.Json` for maximum efficiency
 - **Dependency Light**: Minimal external dependencies for easier maintenance
 - **Built-in Rate Limiting**: Prevents API rate limit violations
@@ -108,7 +108,7 @@ For detailed API documentation, refer to:
 
 ## Requirements
 
-- .NET 7.0, 8.0, or 9.0
+- .NET 8.0, 9.0 or 10.0
 - Valid Billbee API credentials
 
 ## Contributing
