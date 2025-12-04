@@ -225,6 +225,11 @@ namespace Panda.NuGet.BillbeeClient.Models
         public string? CustomerNumber { get; set; }
 
         /// <summary>
+        /// Reference for the payment transaction
+        /// </summary>
+        public string? PaymentReference { get; set; }
+
+        /// <summary>
         /// The Customer object connected with the order
         /// </summary>
         public Customer? Customer { get; set; }
