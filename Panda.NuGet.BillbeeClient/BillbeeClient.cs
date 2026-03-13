@@ -13,6 +13,7 @@ namespace Panda.NuGet.BillbeeClient
             _serviceProvider = serviceProvider;
         }
 
+        public IApiUsageEndPoint ApiUsage => _serviceProvider.GetRequiredService<IApiUsageEndPoint>();
         public IEventEndPoint Events => _serviceProvider.GetRequiredService<IEventEndPoint>();
         public IShipmentEndPoint Shipment => _serviceProvider.GetRequiredService<IShipmentEndPoint>();
         public IWebhookEndPoint Webhooks => _serviceProvider.GetRequiredService<IWebhookEndPoint>();
