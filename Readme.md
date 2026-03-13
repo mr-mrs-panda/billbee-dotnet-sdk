@@ -24,6 +24,7 @@ This project was originally forked from [billbeeio/billbee-csharp-sdk](https://g
 - Cloud storage integration
 - Automatic provisioning
 - Search functionality
+- API usage statistics
 
 ## Installation
 
@@ -106,10 +107,34 @@ For detailed API documentation, refer to:
 - [Official Billbee API Documentation](https://app.billbee.io/swagger/ui/index)
 - [Billbee Website](https://www.billbee.de/api/)
 
+## API Notes
+
+This is not an official Billbee SDK. The package is maintained pragmatically against the real API behavior.
+
+At least some Billbee endpoints do not always behave exactly like the published Swagger definition. `ApiUsage` is one confirmed example: although Swagger documents an `ApiResult<T>` wrapper, real responses may return the report object directly. The client intentionally normalizes both shapes.
+
 ## Requirements
 
 - .NET 8.0, 9.0 or 10.0
 - Valid Billbee API credentials
+
+## Integration Tests
+
+The solution includes [`Panda.NuGet.BillbeeClient.IntegrationTests`](/Users/work/Projects/dotnet/nuget/Panda.NuGet.BillbeeClient/Panda.NuGet.BillbeeClient.IntegrationTests/Panda.NuGet.BillbeeClient.IntegrationTests.csproj) with initial coverage for `ApiUsage`.
+
+Use the checked-in [`appsettings.json`](/Users/work/Projects/dotnet/nuget/Panda.NuGet.BillbeeClient/Panda.NuGet.BillbeeClient.IntegrationTests/appsettings.json) as the placeholder template and copy [`appsettings.local.json.example`](/Users/work/Projects/dotnet/nuget/Panda.NuGet.BillbeeClient/Panda.NuGet.BillbeeClient.IntegrationTests/appsettings.local.json.example) to `appsettings.local.json` for real credentials. The local file is gitignored.
+
+Run the integration tests with:
+
+```bash
+dotnet test Panda.NuGet.BillbeeClient.IntegrationTests/Panda.NuGet.BillbeeClient.IntegrationTests.csproj
+```
+
+The `ApiUsage` integration tests verify the real Billbee behavior. The separate unit tests verify both supported response shapes:
+
+```bash
+dotnet test Panda.NuGet.BillbeeClient.Tests/Panda.NuGet.BillbeeClient.Tests.csproj
+```
 
 ## Contributing
 
