@@ -1,0 +1,12 @@
+{
+  "BillbeeApi": {
+    "Username": "YOUR_BILLBEE_USERNAME",
+    "Password": "YOUR_BILLBEE_API_PASSWORD",
+    "ApiKey": "YOUR_BILLBEE_API_KEY",
+    "BaseUrl": "https://app.billbee.io/api/v1",
+    "Timeout": 180
+  },
+  "IntegrationTests": {
+    "ApiUsageDate": "2026-03-01T00:00:00"
+  }
+}
