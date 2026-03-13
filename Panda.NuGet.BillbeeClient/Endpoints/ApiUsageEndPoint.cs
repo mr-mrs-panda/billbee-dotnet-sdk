@@ -24,13 +24,13 @@ namespace Panda.NuGet.BillbeeClient.Endpoints
         /// <inheritdoc />
         public async Task<ApiResult<ApiUsageSummaryReport>> GetSummarisedApiUsageAsync(ApiUsageRequest? request = null)
         {
-            return await GetApiUsageAsync<ApiUsageSummaryReport>("/api/v1/apiusage", request);
+            return await GetApiUsageAsync<ApiUsageSummaryReport>("/apiusage", request);
         }
 
         /// <inheritdoc />
         public async Task<ApiResult<ApiUsageReport>> GetDetailedApiUsageAsync(ApiUsageRequest? request = null)
         {
-            return await GetApiUsageAsync<ApiUsageReport>("/api/v1/apiusage/detail", request);
+            return await GetApiUsageAsync<ApiUsageReport>("/apiusage/detail", request);
         }
 
         private static NameValueCollection? BuildParameters(ApiUsageRequest? request)
