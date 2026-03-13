@@ -7,3 +7,4 @@ deploy.sh
 .idea/
 .claude/settings.local.json
 CLAUDE.md
+Panda.NuGet.BillbeeClient.IntegrationTests/appsettings.local.json
