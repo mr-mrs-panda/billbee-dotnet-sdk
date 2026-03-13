@@ -10,16 +10,66 @@ using Panda.NuGet.BillbeeClient.Utilities;
 
 namespace Panda.NuGet.BillbeeClient;
 
+/// <summary>
+/// Low-level REST client contract used by endpoint implementations.
+/// This interface is public for advanced scenarios and testing, but it is not intended as a stable high-level SDK surface.
+/// </summary>
 public interface IBillbeeRestClient
 {
+    /// <summary>
+    /// Sends a GET request and returns the HTTP status code.
+    /// </summary>
+    /// <param name="resource">The relative resource path.</param>
     Task<HttpStatusCode> GetAsync(string resource);
+
+    /// <summary>
+    /// Sends a GET request and deserializes the JSON response.
+    /// </summary>
+    /// <param name="resource">The relative resource path.</param>
+    /// <param name="parameter">Optional query string parameters.</param>
+    /// <typeparam name="T">The response type.</typeparam>
     Task<T> GetAsync<T>(string resource, NameValueCollection? parameter = null) where T : new();
+
+    /// <summary>
+    /// Sends a GET request and returns the raw response body.
+    /// </summary>
+    /// <param name="resource">The relative resource path.</param>
+    /// <param name="parameter">Optional query string parameters.</param>
+    Task<string> GetStringAsync(string resource, NameValueCollection? parameter = null);
+
+    /// <summary>
+    /// Sends a PUT request and deserializes the JSON response.
+    /// </summary>
     Task<TResponse> PutAsync<TResponse, TRequest>(string resource, TRequest request);
+
+    /// <summary>
+    /// Sends a PUT request.
+    /// </summary>
     Task PutAsync<TRequest>(string resource, TRequest request);
+
+    /// <summary>
+    /// Sends a PATCH request and deserializes the JSON response.
+    /// </summary>
     Task<TResponse> PatchAsync<TResponse, TRequest>(string resource, TRequest request);
+
+    /// <summary>
+    /// Sends a POST request and deserializes the JSON response.
+    /// </summary>
     Task<TResponse> PostAsync<TResponse, TRequest>(string resource, TRequest request);
+
+    /// <summary>
+    /// Sends a POST request.
+    /// </summary>
     Task PostAsync<TRequest>(string resource, TRequest request);
+
+    /// <summary>
+    /// Sends a POST request and deserializes the JSON response.
+    /// </summary>
     Task<TResponse> PostAsync<TResponse>(string resource);
+
+    /// <summary>
+    /// Sends a DELETE request.
+    /// </summary>
     Task DeleteAsync(string resource, NameValueCollection? parameter = null);
 }
 
@@ -61,6 +111,19 @@ internal class BillbeeRestClient : IBillbeeRestClient
         var request = new HttpRequestMessage(HttpMethod.Get, path);
         var response = await SendRequestWithRetryAsync(request);
         return (await response.Content.ReadFromJsonAsync<T>())!;
+    }
+
+    public async Task<string> GetStringAsync(string resource, NameValueCollection? parameter = null)
+    {
+        var path = GetBasePath(resource);
+        if (parameter != null)
+        {
+            path += "?" + NameValueCollectionToQueryString(parameter);
+        }
+
+        var request = new HttpRequestMessage(HttpMethod.Get, path);
+        var response = await SendRequestWithRetryAsync(request);
+        return await response.Content.ReadAsStringAsync();
     }
 
     public async Task<TResponse> PutAsync<TResponse, TRequest>(string resource, TRequest request)

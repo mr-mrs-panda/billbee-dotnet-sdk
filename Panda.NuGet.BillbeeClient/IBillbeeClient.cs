@@ -9,6 +9,11 @@ namespace Panda.NuGet.BillbeeClient
     public interface IBillbeeClient
     {
         /// <summary>
+        /// EndPoint to access API usage statistics
+        /// </summary>
+        IApiUsageEndPoint ApiUsage { get; }
+
+        /// <summary>
         /// EndPoint to access events
         /// </summary>
         IEventEndPoint Events { get; }

@@ -13,7 +13,7 @@
         <Authors>Mr. &amp; Mrs. Panda</Authors>
         <Company>Mr. &amp; Mrs. Panda</Company>
         <Product>Panda.NuGet.BillbeeClient</Product>
-        <Copyright>Copyright © Mr. &amp; Mrs. Panda 2025</Copyright>
+        <Copyright>Copyright © Mr. &amp; Mrs. Panda 2026</Copyright>
         <PackageProjectUrl>https://github.com/mr-mrs-panda/billbee-dotnet-sdk</PackageProjectUrl>
         <RepositoryUrl>https://github.com/mr-mrs-panda/billbee-dotnet-sdk</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
@@ -28,14 +28,14 @@
         <AssemblyConfiguration>Release</AssemblyConfiguration>
         <AssemblyCompany>Mr. &amp; Mrs. Panda</AssemblyCompany>
         <AssemblyProduct>Panda.NuGet.BillbeeClient</AssemblyProduct>
-        <AssemblyCopyright>Copyright © Mr. &amp; Mrs. Panda 2025</AssemblyCopyright>
+        <AssemblyCopyright>Copyright © Mr. &amp; Mrs. Panda 2026</AssemblyCopyright>
         <AssemblyTrademark></AssemblyTrademark>
         <AssemblyCulture></AssemblyCulture>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.5" />
     </ItemGroup>
 
     <ItemGroup>
