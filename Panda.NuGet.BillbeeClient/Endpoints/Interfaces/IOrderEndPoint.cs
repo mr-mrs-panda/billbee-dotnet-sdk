@@ -143,7 +143,15 @@ namespace Panda.NuGet.BillbeeClient.Endpoints.Interfaces
         /// <summary>
         /// Add a shipment, that was created in an external system to an order.
         /// </summary>
+        /// <param name="orderId">Id of the order</param>
         /// <param name="shipment"></param>
+        Task AddShipmentAsync(long orderId, OrderShipment shipment);
+
+        /// <summary>
+        /// Add a shipment, that was created in an external system to an order.
+        /// </summary>
+        /// <param name="shipment"></param>
+        [Obsolete("Use AddShipmentAsync(long orderId, OrderShipment shipment) instead. The orderId must be passed explicitly.")]
         Task AddShipmentAsync(OrderShipment shipment);
 
         /// <summary>

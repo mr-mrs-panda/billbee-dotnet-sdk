@@ -214,9 +214,17 @@ namespace Panda.NuGet.BillbeeClient.Endpoints
             await _restClient.PutAsync($"/orders/{orderId}/tags", new TagsRequest { Tags = tags });
         }
         
+        public async Task AddShipmentAsync(long orderId, OrderShipment shipment)
+        {
+            await _restClient.PostAsync($"/orders/{orderId}/shipment", shipment);
+        }
+
+        [Obsolete("Use AddShipmentAsync(long orderId, OrderShipment shipment) instead. The orderId must be passed explicitly.")]
         public async Task AddShipmentAsync(OrderShipment shipment)
         {
-            await _restClient.PostAsync($"/orders/{shipment.OrderId}/shipment", shipment);
+            if (!long.TryParse(shipment.OrderId, out var orderId))
+                throw new ArgumentException("shipment.OrderId must be a valid Billbee order id when using this overload.", nameof(shipment));
+            await AddShipmentAsync(orderId, shipment);
         }
 
         public async Task<ApiResult<DeliveryNote>> CreateDeliveryNoteAsync(long orderId, bool includePdf = false, long? sendToCloudId = null)
