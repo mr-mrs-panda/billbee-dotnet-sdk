@@ -35,5 +35,10 @@
         /// Will override the carrier from the shipment product.
         /// </summary>
         public byte? CarrierId { get; set; }
+
+        /// <summary>
+        /// If applicable, a URL to track the shipment.
+        /// </summary>
+        public string? ShipmentUrl { get; set; }
     }
 }
